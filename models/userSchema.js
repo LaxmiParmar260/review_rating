@@ -29,9 +29,9 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "user",
   },
- // profilePic: {
-  //  type: String,
- // },
+   profilePic: {
+    type: String,
+   },
   isActive: {
     type: String,
     default: true,
@@ -39,4 +39,5 @@ const userSchema = mongoose.Schema({
 });
 //this line for updatedAt and createdAt
 userSchema.set("timestamps", true);
-module.exports = mongoose.model("user", userSchema)
+
+module.exports = mongoose.model("user", userSchema);
