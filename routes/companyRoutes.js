@@ -7,6 +7,7 @@ let companyController = require("../controllers/companyController");
 const { companyUpload } = require("../middlewares/companyImageStorage");
 const {createCompanyValidation} = require("../validations/company/companyDataVal");
 
+//Post-method
 companyRouter.post(
   "/create",
   companyUpload.single("companyPic"),
@@ -15,6 +16,8 @@ companyRouter.post(
   createCompanyValidation,
   companyController.createCompany
 );
+
+//get-method
 companyRouter.get("/list", companyController.companyList);
 companyRouter.post("/city", companyController.searchCompany);
 companyRouter.get("/details/:id", companyController.companyDetail);

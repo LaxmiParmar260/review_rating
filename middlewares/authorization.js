@@ -1,5 +1,5 @@
 function authorizeAdmin(req, res, next) {
-  if (req.user && req.user.userRole === "admin") {
+  if (req.user && req.user.userRole === "admin" ) {
     next();
   } else {
     res.status(403).json({

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   userName: {
     type: String,
-    required: true,
+    required : true,
   },
   userPhone: {
     type: Number,
@@ -31,6 +31,7 @@ const userSchema = mongoose.Schema({
   },
    profilePic: {
     type: String,
+    default :true,
    },
   isActive: {
     type: String,

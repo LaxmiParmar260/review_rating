@@ -8,6 +8,7 @@ const {
 } = require("../validations/user/userDataValidation");
 const { userUpload } = require("../middlewares/userImageStorage");
 
+//post-method /user/create
 userRouter.post(
   "/create",
   userUpload.single("profilePic"),

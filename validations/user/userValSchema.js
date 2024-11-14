@@ -31,8 +31,8 @@ const userValSchema = {
       userPassword: joiPassword
         .string()
         .minOfSpecialCharacters(1)
-        .minOfLowercase(0)
-        .minOfUppercase(0)
+        .minOfLowercase(1)
+        .minOfUppercase(1)
         .minOfNumeric(1)
         .noWhiteSpaces()
         .onlyLatinCharacters()

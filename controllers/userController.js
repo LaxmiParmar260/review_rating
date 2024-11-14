@@ -1,9 +1,9 @@
 let userSchema = require("../models/userSchema");
 const bcrypt = require("bcrypt");
-//here we are using jwt for token
 const jwt = require("jsonwebtoken");
 const { transporter } = require("../services/emailService");
-//for create user 
+
+//for create user
 let createUser = async (req, res) => {
   const userData = new userSchema(req.body);
   try {
@@ -12,7 +12,6 @@ let createUser = async (req, res) => {
     });
     if (isUserExists) {
       //for removing the unexist user profile
-      req.file ? unlinkSync(req.file.path) : null;
       res.status(409).json({
         success: false,
         message: "User is already registered with this email",
@@ -21,10 +20,10 @@ let createUser = async (req, res) => {
       //for encryption of password
       const salt = await bcrypt.genSalt(10);
       userData.userPassword = await bcrypt.hash(req.body.userPassword, salt);
-      //for profile pic
-      const filePath = `/uploads/user/${req.file.filename}`;
-      userData.profilePic = filePath;
-      const user = await userData.save();
+      // for profile pic
+      // const filePath = `/uploads/user/${req.file.filename}`;
+      // userData.profilePic = filePath;
+       const user = await userData.save();
       res.status(201).json({
         success: true,
         message: "User registered successfully",
@@ -51,6 +50,7 @@ const userLogIn = async (req, res) => {
         req.body.userPassword,
         userData.userPassword
       );
+      
       //for generating token
       if (userData && hashPassword) {
         const token = jwt.sign({ userData }, process.env.SECRET_KEY, {
@@ -81,7 +81,7 @@ const userLogIn = async (req, res) => {
   }
 };
 
-// send email 
+// send email
 const sendUserPasswordEmail = async (req, res) => {
   const { userEmail } = req.body;
   try {
